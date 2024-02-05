@@ -1,0 +1,32 @@
+spring:
+    security:
+        oauth2:
+            resourceserver:
+                jwt:
+                    jwk-set-uri: https://www.googleapis.com/service_accounts/v1/jwk/securetoken%40system.gserviceaccount.com
+                    issuer-uri: https://securetoken.google.com/fir-d86aa
+    datasource:
+        url: jdbc:postgresql://localhost:5432/demo
+        username: demo
+        password: demo
+        driver-class-name: org.postgresql.Driver
+        hikari:
+          maximum-pool-size: 20
+    jpa:
+        properties:
+            hibernate:
+                format_sql: ${LOG_SQL:false}
+                show_sql: ${LOG_SQL:false}
+                hbm2ddl:
+                    auto: none
+                jdbc:
+                    lob:
+                        non_contextual_creation: true
+                session:
+                    events:
+                        log:
+                            LOG_QUERIES_SLOWER_THAN_MS: 100
+    messages:
+        basename: i18n.messages
+        fallback-to-system-locale: false
+        use-code-as-default-message: true
